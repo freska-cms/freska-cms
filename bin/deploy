@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# Upload to this destination
+SERVER="" # example.com or IP
+
+# Let the user know
+echo "Uploading to $SERVER...";
+
+# Upload files using rsync
+rsync -rlhzv --update -e ssh --exclude='.*' \
+"$GOPATH/src/github.com/freska/freska-cms" \
+"core@$SERVER:/srv/freska"
+
+# Restart the service on server
+ssh -t core@$SERVER /bin/bash <<'EOT'
+sudo systemctl restart freska.service
+EOT
+
+echo "Completed"
+exit 0;

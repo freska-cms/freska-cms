@@ -1,0 +1,81 @@
+package [[ .freska_resource ]]actions
+
+import (
+	"net/http"
+
+	"github.com/freska/auth/can"
+	"github.com/freska/mux"
+	"github.com/freska/server"
+	"github.com/freska/view"
+
+	"github.com/freska/freska-cms/src/lib/session"
+	"github.com/freska/freska-cms/src/[[ .freska_resources ]]"
+)
+
+// HandleUpdateShow renders the form to update a [[ .freska_resource ]].
+func HandleUpdateShow(w http.ResponseWriter, r *http.Request) error {
+
+	// Fetch the  params
+	params, err := mux.Params(r)
+	if err != nil {
+		return server.InternalError(err)
+	}
+	
+	// Find the [[ .freska_resource ]]
+	[[ .freska_resource ]], err := [[ .freska_resources ]].Find(params.GetInt([[ .freska_resources ]].KeyName))
+	if err != nil {
+		return server.NotFoundError(err)
+	}
+
+	// Authorise update [[ .freska_resource ]]
+	user := session.CurrentUser(w, r)
+	err = can.Update([[ .freska_resource ]], user)
+	if err != nil {
+		return server.NotAuthorizedError(err)
+	}
+
+	// Render the template
+	view := view.NewRenderer(w, r)
+	view.AddKey("currentUser", user)
+	view.AddKey("[[ .freska_resource ]]", [[ .freska_resource ]])
+	return view.Render()
+}
+
+// HandleUpdate handles the POST of the form to update a [[ .freska_resource ]]
+func HandleUpdate(w http.ResponseWriter, r *http.Request) error {
+
+	// Fetch the  params
+	params, err := mux.Params(r)
+	if err != nil {
+		return server.InternalError(err)
+	}
+	
+	// Find the [[ .freska_resource ]]
+	[[ .freska_resource ]], err := [[ .freska_resources ]].Find(params.GetInt([[ .freska_resources ]].KeyName))
+	if err != nil {
+		return server.NotFoundError(err)
+	}
+
+	// Check the authenticity token
+	err = session.CheckAuthenticity(w, r)
+	if err != nil {
+		return err
+	}
+
+	// Authorise update [[ .freska_resource ]]
+	err = can.Update([[ .freska_resource ]], user)
+	if err != nil {
+		return server.NotAuthorizedError(err)
+	}
+
+	// Validate the params, removing any we don't accept
+	[[ .freska_resource ]]Params := [[ .freska_resource ]].ValidateParams(params.Map(), [[ .freska_resources ]].AllowedParams())
+
+	err = [[ .freska_resource ]].Update([[ .freska_resource ]]Params)
+	if err != nil {
+		return server.InternalError(err)
+	}
+
+	// Redirect to [[ .freska_resource ]]
+	return server.Redirect(w, r, [[ .freska_resource ]].ShowURL())
+}

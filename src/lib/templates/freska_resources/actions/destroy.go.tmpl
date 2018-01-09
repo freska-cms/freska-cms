@@ -1,0 +1,48 @@
+package [[ .freska_resource ]]actions
+
+import (
+	"net/http"
+
+	"github.com/freska/auth/can"
+	"github.com/freska/mux"
+	"github.com/freska/server"
+
+	"github.com/freska/freska-cms/src/lib/session"
+	"github.com/freska/freska-cms/src/[[ .freska_resources ]]"
+)
+
+// HandleDestroy responds to /[[ .freska_resources ]]/n/destroy by deleting the [[ .freska_resource ]].
+func HandleDestroy(w http.ResponseWriter, r *http.Request) error {
+
+	// Fetch the  params
+	params, err := mux.Params(r)
+	if err != nil {
+		return server.InternalError(err)
+	}
+	
+	// Find the [[ .freska_resource ]]
+	[[ .freska_resource ]], err := [[ .freska_resources ]].Find(params.GetInt([[ .freska_resources ]].KeyName))
+	if err != nil {
+		return server.NotFoundError(err)
+	}
+
+	// Check the authenticity token
+	err = session.CheckAuthenticity(w, r)
+	if err != nil {
+		return err
+	}
+
+	// Authorise destroy [[ .freska_resource ]]
+	user := session.CurrentUser(w, r)
+	err = can.Destroy([[ .freska_resource ]], user)
+	if err != nil {
+		return server.NotAuthorizedError(err)
+	}
+
+	// Destroy the [[ .freska_resource ]]
+	[[ .freska_resource ]].Destroy()
+
+	// Redirect to [[ .freska_resources ]] root
+	return server.Redirect(w, r, [[ .freska_resource ]].IndexURL())
+
+}

@@ -1,0 +1,6 @@
+<section class="admin-bar-actions">
+<a class="button small" href="/pages/{{.page.ID}}/update">Edit Page</a>
+</section>
+<section>
+{{ sanitize .page.Text }}
+</section>

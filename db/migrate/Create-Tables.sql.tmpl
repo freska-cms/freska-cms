@@ -1,0 +1,85 @@
+/* Setup tables for cms */
+CREATE TABLE freska_metadata (
+    id SERIAL NOT NULL,
+    updated_at timestamp,
+    freska_version text,
+    migration_version text,
+    status int
+);
+
+ALTER TABLE freska_metadata OWNER TO "[[.freska_db_user]]";
+
+CREATE TABLE users (
+id SERIAL NOT NULL,
+created_at timestamp,
+updated_at timestamp,
+status integer,
+role integer,
+name text,
+email text,
+title text,
+summary text,
+text text,
+image_id integer,
+password_hash text,
+password_reset_token text,
+password_reset_at timestamp
+);
+ALTER TABLE users OWNER TO "[[.freska_db_user]]";
+
+CREATE TABLE tags (
+id SERIAL NOT NULL,
+created_at timestamp,
+updated_at timestamp,
+parent_id integer,
+name text,
+summary text,
+url text,
+sort integer,
+dotted_ids text,
+status integer
+);
+ALTER TABLE tags OWNER TO "[[.freska_db_user]]";
+
+DROP TABLE IF EXISTS images;
+CREATE TABLE images (
+id SERIAL NOT NULL,
+created_at timestamp,
+updated_at timestamp,
+status integer,
+author_id integer,
+path text,
+sort integer,
+name text
+);
+ALTER TABLE images OWNER TO "[[.freska_db_user]]";
+
+DROP TABLE IF EXISTS pages;
+CREATE TABLE pages (
+id SERIAL NOT NULL,
+created_at timestamp,
+updated_at timestamp,
+status integer,
+author_id integer,
+url text,
+name text,
+summary text,
+keywords text,
+template text,
+text text
+);
+ALTER TABLE pages OWNER TO "[[.freska_db_user]]";
+
+CREATE TABLE posts (
+id SERIAL NOT NULL,
+created_at timestamp,
+updated_at timestamp,
+keywords text,
+template text,
+text text,
+status integer,
+author_id integer,
+name text,
+summary text
+);
+ALTER TABLE posts OWNER TO "[[.freska_db_user]]";

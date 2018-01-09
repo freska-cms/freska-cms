@@ -1,0 +1,101 @@
+package [[ .freska_resources ]]
+
+import (
+	"time"
+
+	"github.com/freska/query"
+
+	"github.com/freska/freska-cms/src/lib/resource"
+	"github.com/freska/freska-cms/src/lib/status"
+)
+
+const (
+	// TableName is the database table for this resource
+	TableName = "[[ .freska_resources ]]"
+	// KeyName is the primary key value for this resource
+	KeyName = "id"
+	// Order defines the default sort order in sql for this resource
+	Order = "name asc, id desc"
+)
+
+// AllowedParams returns an array of allowed param keys for Update and Create.
+func AllowedParams() []string {
+  return []string{"status", [[ .freska_columns ]]}
+}
+
+// NewWithColumns creates a new [[ .freska_resource ]] instance and fills it with data from the database cols provided.
+func NewWithColumns(cols map[string]interface{}) *[[ .Freska_Resource ]] {
+
+	[[ .freska_resource ]] := New()
+	[[ .freska_resource ]].ID = resource.ValidateInt(cols["id"])
+	[[ .freska_resource ]].CreatedAt = resource.ValidateTime(cols["created_at"])
+	[[ .freska_resource ]].UpdatedAt = resource.ValidateTime(cols["updated_at"])
+	[[ .freska_resource ]].Status = resource.ValidateInt(cols["status"])
+[[ .freska_new_fields ]]
+
+	return [[ .freska_resource ]]
+}
+
+// New creates and initialises a new [[ .freska_resource ]] instance.
+func New() *[[ .Freska_Resource ]] {
+	[[ .freska_resource ]] := &[[ .Freska_Resource ]]{}
+	[[ .freska_resource ]].CreatedAt = time.Now()
+	[[ .freska_resource ]].UpdatedAt = time.Now()
+	[[ .freska_resource ]].TableName = TableName
+	[[ .freska_resource ]].KeyName = KeyName
+	[[ .freska_resource ]].Status = status.Draft
+	return [[ .freska_resource ]]
+}
+
+// FindFirst fetches a single [[ .freska_resource ]] record from the database using
+// a where query with the format and args provided.
+func FindFirst(format string, args ...interface{}) (*[[ .Freska_Resource ]], error) {
+	result, err := Query().Where(format, args...).FirstResult()
+	if err != nil {
+		return nil, err
+	}
+	return NewWithColumns(result), nil
+}
+
+// Find fetches a single [[ .freska_resource ]] record from the database by id.
+func Find(id int64) (*[[ .Freska_Resource ]], error) {
+	result, err := Query().Where("id=?", id).FirstResult()
+	if err != nil {
+		return nil, err
+	}
+	return NewWithColumns(result), nil
+}
+
+// FindAll fetches all [[ .freska_resource ]] records matching this query from the database.
+func FindAll(q *query.Query) ([]*[[ .Freska_Resource ]], error) {
+
+	// Fetch query.Results from query
+	results, err := q.Results()
+	if err != nil {
+		return nil, err
+	}
+
+	// Return an array of [[ .freska_resources ]] constructed from the results
+	var [[ .freska_resources ]] []*[[ .Freska_Resource ]]
+	for _, cols := range results {
+		p := NewWithColumns(cols)
+		[[ .freska_resources ]] = append([[ .freska_resources ]], p)
+	}
+
+	return [[ .freska_resources ]], nil
+}
+
+// Query returns a new query for [[ .freska_resources ]] with a default order.
+func Query() *query.Query {
+	return query.New(TableName, KeyName).Order(Order)
+}
+
+// Where returns a new query for [[ .freska_resources ]] with the format and arguments supplied.
+func Where(format string, args ...interface{}) *query.Query {
+	return Query().Where(format, args...)
+}
+
+// Published returns a query for all [[ .freska_resources ]] with status >= published.
+func Published() *query.Query {
+	return Query().Where("status>=?", status.Published)
+}
