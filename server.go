@@ -70,7 +70,7 @@ func SetupServer() (*server.Server, error) {
 	config.Current = c
 
 	// Check environment variable to see if we are in production mode
-	if os.Getenv("FRAG_ENV") == "production" {
+	if os.Getenv("FRESKA_ENV") == "production" {
 		config.Current.Mode = config.ModeProduction
 	}
 
