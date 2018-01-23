@@ -8,7 +8,7 @@ echo "Uploading to $SERVER...";
 
 # Upload files using rsync
 rsync -rlhzv --update -e ssh --exclude='.*' \
-"$GOPATH/src/github.com/freska/freska-cms" \
+"$GOPATH/src/github.com/freska-cms/freska-cms" \
 "core@$SERVER:/srv/freska"
 
 # Restart the service on server

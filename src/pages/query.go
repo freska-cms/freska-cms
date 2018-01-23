@@ -3,7 +3,7 @@ package pages
 import (
 	"time"
 
-	"github.com/freska/query"
+	"github.com/freska-cms/query"
 
 	"github.com/freska-cms/freska-cms/src/lib/resource"
 	"github.com/freska-cms/freska-cms/src/lib/status"

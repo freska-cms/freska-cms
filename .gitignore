@@ -2,10 +2,12 @@
 .idea/
 
 bin/freska-server*
-log/*
-secrets/*
+log/.keep
+public/assets/scripts/.keep
+public/assets/styles/.keep
+secrets/.keep
+src/images/assets/images/.keep
 db/backup/*
-.keep
 
 # ignore compiled app group
 public/assets/*/app-*
