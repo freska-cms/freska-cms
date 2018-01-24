@@ -1,13 +1,14 @@
 .DS_Store
 .idea/
 
-bin/fragmenta-server*
-log/*
-secrets/*
+bin/freska-server*
+log/.keep
+public/assets/scripts/.keep
+public/assets/styles/.keep
+secrets/.keep
+src/images/assets/images/.keep
 db/backup/*
 
 # ignore compiled app group
 public/assets/*/app-*
 public/files
-
-themes/*

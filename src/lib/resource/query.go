@@ -3,7 +3,7 @@ package resource
 import (
 	"time"
 
-	"github.com/fragmenta/query"
+	"github.com/freska-cms/query"
 )
 
 // Query creates a new query relation referencing this specific resource by id.

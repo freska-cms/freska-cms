@@ -1,0 +1,18 @@
+// Package [[ .freska_resources ]] represents the [[ .freska_resource ]] resource
+package [[ .freska_resources ]]
+
+import (
+	"github.com/freska-cms/freska-cms/src/lib/resource"
+	"github.com/freska-cms/freska-cms/src/lib/status"
+)
+
+// [[ .Freska_Resource ]] handles saving and retreiving [[ .freska_resources ]] from the database
+type [[ .Freska_Resource ]] struct {
+	// resource.Base defines behaviour and fields shared between all resources
+	resource.Base
+
+	// status.ResourceStatus defines a status field and associated behaviour
+	status.ResourceStatus
+
+[[ .freska_fields ]]
+}

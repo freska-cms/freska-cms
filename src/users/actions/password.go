@@ -5,17 +5,17 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/fragmenta/auth"
-	"github.com/fragmenta/mux"
-	"github.com/fragmenta/query"
-	"github.com/fragmenta/server"
-	"github.com/fragmenta/server/config"
-	"github.com/fragmenta/server/log"
-	"github.com/fragmenta/view"
+	"github.com/freska-cms/auth"
+	"github.com/freska-cms/mux"
+	"github.com/freska-cms/query"
+	"github.com/freska-cms/server"
+	"github.com/freska-cms/server/config"
+	"github.com/freska-cms/server/log"
+	"github.com/freska-cms/view"
 
-	"github.com/fragmenta/fragmenta-cms/src/lib/mail"
-	"github.com/fragmenta/fragmenta-cms/src/lib/session"
-	"github.com/fragmenta/fragmenta-cms/src/users"
+	"github.com/freska-cms/freska-cms/src/lib/mail"
+	"github.com/freska-cms/freska-cms/src/lib/session"
+	"github.com/freska-cms/freska-cms/src/users"
 )
 
 const (

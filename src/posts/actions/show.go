@@ -3,13 +3,13 @@ package postactions
 import (
 	"net/http"
 
-	"github.com/fragmenta/auth/can"
-	"github.com/fragmenta/mux"
-	"github.com/fragmenta/server"
-	"github.com/fragmenta/view"
+	"github.com/freska-cms/auth/can"
+	"github.com/freska-cms/mux"
+	"github.com/freska-cms/server"
+	"github.com/freska-cms/view"
 
-	"github.com/fragmenta/fragmenta-cms/src/lib/session"
-	"github.com/fragmenta/fragmenta-cms/src/posts"
+	"github.com/freska-cms/freska-cms/src/lib/session"
+	"github.com/freska-cms/freska-cms/src/posts"
 )
 
 // HandleShow displays a single post.
@@ -42,9 +42,6 @@ func HandleShow(w http.ResponseWriter, r *http.Request) error {
 	view.CacheKey(post.CacheKey())
 	view.AddKey("currentUser", user)
 	view.AddKey("post", post)
-	view.AddKey("meta_title", post.Name)
-	view.AddKey("meta_keywords", post.Keywords)
-	view.AddKey("meta_desc", post.Summary)
 	view.Template("posts/views/templates/default.html.got")
 	return view.Render()
 }

@@ -1,8 +1,8 @@
 package status
 
 import (
-	"github.com/fragmenta/query"
-	"github.com/fragmenta/view/helpers"
+	"github.com/freska-cms/query"
+	"github.com/freska-cms/view/helpers"
 )
 
 // Status values valid in the status field added with status.ResourceStatus.

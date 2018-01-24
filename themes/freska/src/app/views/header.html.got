@@ -1,0 +1,15 @@
+{{ if .currentUser.Admin }}
+  {{ template "app/views/admin.html.got" . }}
+{{ end }}
+<nav>
+  <ul>
+    <li><a href="https://www.nextbit.io">Freska</a></li>
+    <li><a href="/install">Install</a></li>
+    <li><a href="/develop">Develop</a></li>
+    <li><a href="/docs">Docs</a></li>
+    <li><a href="/blog">Blog</a></li>
+    <li><a href="https://github.com/freska-cms">Github</a></li>
+  </ul>
+</nav>
+
+  

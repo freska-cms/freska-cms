@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/fragmenta/auth"
+	"github.com/freska-cms/auth"
 )
 
 // Base defines shared fields and behaviour for resources.

@@ -9,16 +9,16 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/fragmenta/auth"
-	"github.com/fragmenta/auth/can"
-	"github.com/fragmenta/query"
-	"github.com/fragmenta/server/log"
-	"github.com/fragmenta/view"
+	"github.com/freska-cms/auth"
+	"github.com/freska-cms/auth/can"
+	"github.com/freska-cms/query"
+	"github.com/freska-cms/server/log"
+	"github.com/freska-cms/view"
 )
 
 // This file contains some test helpers for resources.
 
-// basePath returns the path to the fragmenta root from a given test folder.
+// basePath returns the path to the freska root from a given test folder.
 func basePath(depth int) string {
 	// Construct a path to root
 	p := ""
@@ -104,7 +104,7 @@ func SetupTestDatabase(depth int) error {
 	log.Add(logger)
 
 	// Read config json
-	path := filepath.Join(basePath(depth), "secrets", "fragmenta.json")
+	path := filepath.Join(basePath(depth), "secrets", "freska.json")
 	file, err := ioutil.ReadFile(path)
 	if err != nil {
 		return err

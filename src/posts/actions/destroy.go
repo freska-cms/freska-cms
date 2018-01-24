@@ -3,12 +3,12 @@ package postactions
 import (
 	"net/http"
 
-	"github.com/fragmenta/auth/can"
-	"github.com/fragmenta/mux"
-	"github.com/fragmenta/server"
+	"github.com/freska-cms/auth/can"
+	"github.com/freska-cms/mux"
+	"github.com/freska-cms/server"
 
-	"github.com/fragmenta/fragmenta-cms/src/lib/session"
-	"github.com/fragmenta/fragmenta-cms/src/posts"
+	"github.com/freska-cms/freska-cms/src/lib/session"
+	"github.com/freska-cms/freska-cms/src/posts"
 )
 
 // HandleDestroy responds to /posts/n/destroy by deleting the post.

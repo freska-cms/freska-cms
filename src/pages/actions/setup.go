@@ -5,17 +5,17 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/fragmenta/auth"
-	"github.com/fragmenta/mux"
-	"github.com/fragmenta/server"
-	"github.com/fragmenta/server/log"
-	"github.com/fragmenta/view"
+	"github.com/freska-cms/auth"
+	"github.com/freska-cms/mux"
+	"github.com/freska-cms/server"
+	"github.com/freska-cms/server/log"
+	"github.com/freska-cms/view"
 
-	"github.com/fragmenta/fragmenta-cms/src/pages"
-	"github.com/fragmenta/fragmenta-cms/src/users"
+	"github.com/freska-cms/freska-cms/src/pages"
+	"github.com/freska-cms/freska-cms/src/users"
 )
 
-// HandleSetupShow responds to GET /fragmenta/setup
+// HandleSetupShow responds to GET /freska/setup
 func HandleSetupShow(w http.ResponseWriter, r *http.Request) error {
 
 	// Check we have no users, if not bail out
@@ -29,7 +29,7 @@ func HandleSetupShow(w http.ResponseWriter, r *http.Request) error {
 	return view.Render()
 }
 
-// HandleSetup responds to POST /fragmenta/setup
+// HandleSetup responds to POST /freska/setup
 func HandleSetup(w http.ResponseWriter, r *http.Request) error {
 
 	// Check we have no users, if not bail out
@@ -85,9 +85,9 @@ func HandleSetup(w http.ResponseWriter, r *http.Request) error {
 	// Create a welcome home page
 	pageParams := map[string]string{
 		"status": "100",
-		"name":   "Fragmenta",
+		"name":   "Freska",
 		"url":    "/",
-		"text":   "<section class=\"padded\"><h1>Welcome to Fragmenta</h1><p><a href=\"/pages/1/update\">Edit this page</a></p></section>",
+		"text":   "<section class=\"padded\"><h1>Welcome to Freska</h1><p><a href=\"/pages/1/update\">Edit this page</a></p></section>",
 	}
 	_, err = pages.New().Create(pageParams)
 	if err != nil {

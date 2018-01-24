@@ -3,12 +3,11 @@ package postactions
 import (
 	"net/http"
 
-	"github.com/fragmenta/server"
-	"github.com/fragmenta/server/config"
-	"github.com/fragmenta/view"
+	"github.com/freska-cms/server"
+	"github.com/freska-cms/view"
 
-	"github.com/fragmenta/fragmenta-cms/src/lib/session"
-	"github.com/fragmenta/fragmenta-cms/src/posts"
+	"github.com/freska-cms/freska-cms/src/lib/session"
+	"github.com/freska-cms/freska-cms/src/posts"
 )
 
 // HandleShowBlog responds to GET /blog
@@ -27,9 +26,6 @@ func HandleShowBlog(w http.ResponseWriter, r *http.Request) error {
 	view := view.NewRenderer(w, r)
 	view.AddKey("currentUser", user)
 	view.AddKey("posts", blogPosts)
-	view.AddKey("meta_title", "Blog - "+config.Get("meta_title"))
-	view.AddKey("meta_desc", config.Get("meta_desc"))
-	view.AddKey("meta_keywords", config.Get("meta_keywords"))
 	view.Template("posts/views/blog.html.got")
 	return view.Render()
 }

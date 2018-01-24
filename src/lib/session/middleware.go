@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/fragmenta/auth"
-	"github.com/fragmenta/server/log"
-	"github.com/fragmenta/view"
+	"github.com/freska-cms/auth"
+	"github.com/freska-cms/server/log"
+	"github.com/freska-cms/view"
 )
 
 // Middleware sets a token on every GET request so that it can be

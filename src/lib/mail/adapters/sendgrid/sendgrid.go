@@ -6,7 +6,7 @@ import (
 	"github.com/sendgrid/sendgrid-go"
 	"github.com/sendgrid/sendgrid-go/helpers/mail"
 
-	m "github.com/fragmenta/fragmenta-cms/src/lib/mail"
+	m "github.com/freska-cms/freska-cms/src/lib/mail"
 )
 
 // Service sends mail via sendgrid and conforms to mail.Service.

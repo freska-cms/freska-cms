@@ -3,13 +3,13 @@ package pageactions
 import (
 	"net/http"
 
-	"github.com/fragmenta/auth/can"
-	"github.com/fragmenta/mux"
-	"github.com/fragmenta/server"
-	"github.com/fragmenta/view"
+	"github.com/freska-cms/auth/can"
+	"github.com/freska-cms/mux"
+	"github.com/freska-cms/server"
+	"github.com/freska-cms/view"
 
-	"github.com/fragmenta/fragmenta-cms/src/lib/session"
-	"github.com/fragmenta/fragmenta-cms/src/pages"
+	"github.com/freska-cms/freska-cms/src/lib/session"
+	"github.com/freska-cms/freska-cms/src/pages"
 )
 
 // HandleIndex displays a list of pages.

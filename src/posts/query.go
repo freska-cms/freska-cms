@@ -3,10 +3,10 @@ package posts
 import (
 	"time"
 
-	"github.com/fragmenta/query"
+	"github.com/freska-cms/query"
 
-	"github.com/fragmenta/fragmenta-cms/src/lib/resource"
-	"github.com/fragmenta/fragmenta-cms/src/lib/status"
+	"github.com/freska-cms/freska-cms/src/lib/resource"
+	"github.com/freska-cms/freska-cms/src/lib/status"
 )
 
 const (

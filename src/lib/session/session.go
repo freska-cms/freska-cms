@@ -4,11 +4,11 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/fragmenta/auth"
-	"github.com/fragmenta/mux"
-	"github.com/fragmenta/server/log"
+	"github.com/freska-cms/auth"
+	"github.com/freska-cms/mux"
+	"github.com/freska-cms/server/log"
 
-	"github.com/fragmenta/fragmenta-cms/src/users"
+	"github.com/freska-cms/freska-cms/src/users"
 )
 
 // CurrentUser returns the saved user (or an empty anon user)

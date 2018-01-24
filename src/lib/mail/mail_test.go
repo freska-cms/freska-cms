@@ -3,7 +3,7 @@ package mail
 import (
 	"testing"
 
-	"github.com/fragmenta/view"
+	"github.com/freska-cms/view"
 )
 
 // TestMail tests that mail formats properly in dev mode

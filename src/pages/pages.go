@@ -2,10 +2,10 @@
 package pages
 
 import (
-	"github.com/fragmenta/view/helpers"
+	"github.com/freska-cms/view/helpers"
 
-	"github.com/fragmenta/fragmenta-cms/src/lib/resource"
-	"github.com/fragmenta/fragmenta-cms/src/lib/status"
+	"github.com/freska-cms/freska-cms/src/lib/resource"
+	"github.com/freska-cms/freska-cms/src/lib/status"
 )
 
 // Page handles saving and retreiving pages from the database

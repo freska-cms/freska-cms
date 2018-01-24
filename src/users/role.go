@@ -1,10 +1,10 @@
 package users
 
 import (
-	"github.com/fragmenta/query"
-	"github.com/fragmenta/view/helpers"
+	"github.com/freska-cms/query"
+	"github.com/freska-cms/view/helpers"
 
-	"github.com/fragmenta/fragmenta-cms/src/lib/resource"
+	"github.com/freska-cms/freska-cms/src/lib/resource"
 )
 
 // This file contains functions related to authorisation and roles.

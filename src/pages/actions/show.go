@@ -3,14 +3,13 @@ package pageactions
 import (
 	"net/http"
 
-	"github.com/fragmenta/auth/can"
-	"github.com/fragmenta/mux"
-	"github.com/fragmenta/server"
-	"github.com/fragmenta/view"
+	"github.com/freska-cms/auth/can"
+	"github.com/freska-cms/mux"
+	"github.com/freska-cms/server"
+	"github.com/freska-cms/view"
 
-	"github.com/fragmenta/fragmenta-cms/src/lib/session"
-	"github.com/fragmenta/fragmenta-cms/src/pages"
-	"github.com/fragmenta/fragmenta-cms/src/redirects"
+	"github.com/freska-cms/freska-cms/src/lib/session"
+	"github.com/freska-cms/freska-cms/src/pages"
 )
 
 // HandleShow displays a single page.
@@ -43,9 +42,6 @@ func HandleShow(w http.ResponseWriter, r *http.Request) error {
 	view.CacheKey(page.CacheKey())
 	view.AddKey("page", page)
 	view.AddKey("currentUser", user)
-	view.AddKey("meta_title", page.Name)
-	view.AddKey("meta_keywords", page.Keywords)
-	view.AddKey("meta_desc", page.Summary)
 	view.Template(page.ShowTemplate())
 	return view.Render()
 }
@@ -60,14 +56,9 @@ func HandleShowPath(w http.ResponseWriter, r *http.Request) error {
 	}
 
 	// Find the page
-	path := "/" + params.Get("path")
-	page, err := pages.FindFirst("url=?", path)
+	page, err := pages.FindFirst("url=?", "/"+params.Get("path"))
 	if err != nil {
-		redirect, err := redirects.FindFirst("old_url=?", path)
-		if err != nil {
-			return server.NotFoundError(err)
-		}
-		return server.Redirect(w, r, redirect.NewURL)
+		return server.NotFoundError(err)
 	}
 
 	// Authorise access IF the page is not published
@@ -84,9 +75,6 @@ func HandleShowPath(w http.ResponseWriter, r *http.Request) error {
 	view.CacheKey(page.CacheKey())
 	view.AddKey("page", page)
 	view.AddKey("currentUser", user)
-	view.AddKey("meta_title", page.Name)
-	view.AddKey("meta_keywords", page.Keywords)
-	view.AddKey("meta_desc", page.Summary)
 	view.Template(page.ShowTemplate())
 	return view.Render()
 }

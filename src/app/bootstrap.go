@@ -16,13 +16,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/fragmenta/query"
+	"github.com/freska-cms/query"
 )
 
-// TODO: This should probably go into a bootstrap package within fragmenta?
+// TODO: This should probably go into a bootstrap package within freska?
 
 const (
-	fragmentaVersion = "1.2"
+	freskaVersion = "1.2"
 
 	permissions                 = 0744
 	createDatabaseMigrationName = "Create-Database"
@@ -30,18 +30,18 @@ const (
 )
 
 var (
-	// ConfigDevelopment holds the development config from fragmenta.json
+	// ConfigDevelopment holds the development config from freska.json
 	ConfigDevelopment map[string]string
 
-	// ConfigProduction holds development config from fragmenta.json
+	// ConfigProduction holds development config from freska.json
 	ConfigProduction map[string]string
 
-	// ConfigTest holds the app test config from fragmenta.json
+	// ConfigTest holds the app test config from freska.json
 	ConfigTest map[string]string
 )
 
 // Bootstrap generates missing config files, sql migrations, and runs the first migrations
-// For this we need to know what to call the app, but we default to fragmenta-cms for now
+// For this we need to know what to call the app, but we default to freska-cms for now
 // we could use our current folder name?
 func Bootstrap() error {
 	// We assume we're being run from root of project path
@@ -62,7 +62,7 @@ func Bootstrap() error {
 		return err
 	}
 
-	// Run the migrations without the fragmenta tool being present
+	// Run the migrations without the freska tool being present
 	err = runMigrations(projectPath)
 	if err != nil {
 		return err
@@ -80,7 +80,7 @@ func RequiresBootStrap() bool {
 }
 
 func configPath() string {
-	return "secrets/fragmenta.json"
+	return "secrets/freska.json"
 }
 
 func projectPathRelative(projectPath string) string {
@@ -174,7 +174,7 @@ func generateCreateSQL(projectPath string) error {
 		}
 
 		// Now vivify the template, for now we just replace one key
-		sqlString := strings.Replace(string(sql), "[[.fragmenta_db_user]]", u, -1)
+		sqlString := strings.Replace(string(sql), "[[.freska_db_user]]", u, -1)
 
 		file = migrationPath(projectPath, createTablesMigrationName)
 		err = ioutil.WriteFile(file, []byte(sqlString), 0744)
@@ -257,8 +257,8 @@ func writeMetadata(config map[string]string, migrations []string) {
 	defer query.CloseDatabase()
 
 	for _, m := range migrations {
-		sql := "Insert into fragmenta_metadata(updated_at,fragmenta_version,migration_version,status) VALUES(NOW(),$1,$2,100);"
-		result, err := query.ExecSQL(sql, fragmentaVersion, m)
+		sql := "Insert into freska_metadata(updated_at,freska_version,migration_version,status) VALUES(NOW(),$1,$2,100);"
+		result, err := query.ExecSQL(sql, freskaVersion, m)
 		if err != nil {
 			log.Printf("Database ERROR %s %s", err, result)
 		}
@@ -290,7 +290,7 @@ func openDatabase(config map[string]string) error {
 // Generate a suitable path for a migration from the current date/time down to nanosecond
 func migrationPath(path string, name string) string {
 	now := time.Now()
-	layout := "2006-01-02-150405"
+	layout := "2018-01-02-150405"
 	return fmt.Sprintf("%s/db/migrate/%s-%s.sql", path, now.Format(layout), name)
 }
 

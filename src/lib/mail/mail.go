@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/fragmenta/view"
+	"github.com/freska-cms/view"
 )
 
 // TODO - add more mail services, at present only sendgrid is supported

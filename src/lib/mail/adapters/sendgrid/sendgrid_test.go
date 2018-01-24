@@ -3,7 +3,7 @@ package sendgrid
 import (
 	"testing"
 
-	"github.com/fragmenta/fragmenta-cms/src/lib/mail"
+	"github.com/freska-cms/freska-cms/src/lib/mail"
 )
 
 // TestSendGrid tests we can create a new sendgrid connection

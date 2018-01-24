@@ -1,11 +1,11 @@
 package app
 
 import (
-	"github.com/fragmenta/auth"
-	"github.com/fragmenta/auth/can"
-	"github.com/fragmenta/server/config"
+	"github.com/freska-cms/auth"
+	"github.com/freska-cms/auth/can"
+	"github.com/freska-cms/server/config"
 
-	"github.com/fragmenta/fragmenta-cms/src/users"
+	"github.com/freska-cms/freska-cms/src/users"
 )
 
 // SetupAuth sets up the auth pkg and authorisation for users

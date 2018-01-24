@@ -1,8 +1,8 @@
-![Fragmenta CMS](https://avatars3.githubusercontent.com/u/8027677?v=3&s=100)
+![Freska CMS](https://avatars3.githubusercontent.com/u/8027677?v=3&s=100)
 
-# Fragmenta CMS
+# Freska CMS
 
-Fragmenta CMS is a user-friendly Content Management System built with Go. For more information and a demo of the CMS in action, see the website at http://fragmenta.eu
+Freska CMS is a user-friendly Content Management System built with Go. For more information and a demo of the CMS in action, see the website at http://www.nextbit.io
 
 ## Usage
 
@@ -15,7 +15,7 @@ Fragmenta CMS is a user-friendly Content Management System built with Go. For mo
 The *session_name* key is used to set the name used in cookies.
 
 #### Theme
-The *theme* key is used to set the theme. To use a theme, add a key with the name of your theme folder to the fragmenta.json file. Theme templates will then override any templates in the app at the same path. 
+The *theme* key is used to set the theme. To use a theme, add a key with the name of your theme folder to the freska.json file. Theme templates will then override any templates in the app at the same path. 
 
 
 ## Requirements 

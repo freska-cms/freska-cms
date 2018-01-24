@@ -1,0 +1,140 @@
+// Tests for the [[ .freska_resources ]] package
+package [[ .freska_resources ]]
+
+import (
+	"testing"
+
+	"github.com/freska-cms/freska-cms/src/lib/resource"
+)
+
+var testName = "foo"
+
+func TestSetup(t *testing.T) {
+	err := resource.SetupTestDatabase(2)
+	if err != nil {
+		t.Fatalf("[[ .freska_resources ]]: Setup db failed %s", err)
+	}
+}
+
+// Test Create method
+func TestCreate[[ .Freska_Resources ]](t *testing.T) {
+	[[ .freska_resource ]]Params := map[string]string{
+			"name":      testName,
+			"status":    "100",
+	}
+
+	id, err := New().Create([[ .freska_resource ]]Params)
+	if err != nil {
+		t.Fatalf("[[ .freska_resources ]]: Create [[ .freska_resource ]] failed :%s", err)
+	}
+
+	[[ .freska_resource ]], err := Find(id)
+	if err != nil {
+		t.Fatalf("[[ .freska_resources ]]: Create [[ .freska_resource ]] find failed")
+	}
+
+	if [[ .freska_resource ]].Name != testName {
+		t.Fatalf("[[ .freska_resources ]]: Create [[ .freska_resource ]] name failed expected:%s got:%s", testName, [[ .freska_resource ]].Name)
+	}
+
+}
+
+// Test Index (List) method
+func TestList[[ .Freska_Resources ]](t *testing.T) {
+
+	// Get all [[ .freska_resources ]] (we should have at least one)
+	results, err := FindAll(Query())
+	if err != nil {
+		t.Fatalf("[[ .freska_resources ]]: List no [[ .freska_resource ]] found :%s", err)
+	}
+
+	if len(results) < 1 {
+		t.Fatalf("[[ .freska_resources ]]: List no [[ .freska_resources ]] found :%s", err)
+	}
+
+}
+
+// Test Update method
+func TestUpdate[[ .Freska_Resources ]](t *testing.T) {
+
+	// Get the last [[ .freska_resource ]] (created in TestCreate[[ .Freska_Resources ]] above)
+	[[ .freska_resource ]], err := FindFirst("name=?", testName)
+	if err != nil {
+		t.Fatalf("[[ .freska_resources ]]: Update no [[ .freska_resource ]] found :%s", err)
+	}
+
+	name := "bar"
+	[[ .freska_resource ]]Params := map[string]string{"name": name}
+	err = [[ .freska_resource ]].Update([[ .freska_resource ]]Params)
+	if err != nil {
+		t.Fatalf("[[ .freska_resources ]]: Update [[ .freska_resource ]] failed :%s", err)
+	}
+
+	// Fetch the [[ .freska_resource ]] again from db
+	[[ .freska_resource ]], err = Find([[ .freska_resource ]].ID)
+	if err != nil {
+		t.Fatalf("[[ .freska_resources ]]: Update [[ .freska_resource ]] fetch failed :%s", [[ .freska_resource ]].Name)
+	}
+
+	if [[ .freska_resource ]].Name != name {
+		t.Fatalf("[[ .freska_resources ]]: Update [[ .freska_resource ]] failed :%s", [[ .freska_resource ]].Name)
+	}
+
+}
+
+// TestQuery tests trying to find published resources
+func TestQuery(t *testing.T) {
+
+	results, err := FindAll(Published())
+	if err != nil {
+		t.Fatalf("[[ .freska_resources ]]: error getting [[ .freska_resources ]] :%s", err)
+	}
+	if len(results) == 0 {
+		t.Fatalf("[[ .freska_resources ]]: published [[ .freska_resources ]] not found :%s", err)
+	}
+
+	results, err = FindAll(Query().Where("id>=? AND id <=?", 0, 100))
+	if err != nil || len(results) == 0 {
+		t.Fatalf("[[ .freska_resources ]]: no [[ .freska_resource ]] found :%s", err)
+	}
+	if len(results) > 1 {
+		t.Fatalf("[[ .freska_resources ]]: more than one [[ .freska_resource ]] found for where :%s", err)
+	}
+
+}
+
+// Test Destroy method
+func TestDestroy[[ .Freska_Resources ]](t *testing.T) {
+
+	results, err := FindAll(Query())
+	if err != nil || len(results) == 0 {
+		t.Fatalf("[[ .freska_resources ]]: Destroy no [[ .freska_resource ]] found :%s", err)
+	}
+	[[ .freska_resource ]] := results[0]
+	count := len(results)
+
+	err = [[ .freska_resource ]].Destroy()
+	if err != nil {
+		t.Fatalf("[[ .freska_resources ]]: Destroy [[ .freska_resource ]] failed :%s", err)
+	}
+
+	// Check new length of [[ .freska_resources ]] returned
+	results, err = FindAll(Query())
+	if err != nil {
+		t.Fatalf("[[ .freska_resources ]]: Destroy error getting results :%s", err)
+	}
+
+	// length should be one less than previous
+	if len(results) != count-1 {
+		t.Fatalf("[[ .freska_resources ]]: Destroy [[ .freska_resource ]] count wrong :%d", len(results))
+	}
+
+}
+
+
+// TestAllowedParams should always return some params
+func TestAllowedParams(t *testing.T) {
+	if len(AllowedParams()) == 0 {
+		t.Fatalf("[[ .freska_resources ]]: no allowed params")
+	}
+}

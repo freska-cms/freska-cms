@@ -1,0 +1,7 @@
+router.Get("/[[ .freska_resources ]]", [[ .freska_resource ]]actions.HandleIndex)
+router.Get("/[[ .freska_resources ]]/create", [[ .freska_resource ]]actions.HandleCreateShow)
+router.Post("/[[ .freska_resources ]]/create", [[ .freska_resource ]]actions.HandleCreate)
+router.Get("/[[ .freska_resources ]]/{id:[0-9]+}/update", [[ .freska_resource ]]actions.HandleUpdateShow)
+router.Post("/[[ .freska_resources ]]/{id:[0-9]+}/update", [[ .freska_resource ]]actions.HandleUpdate)
+router.Post("/[[ .freska_resources ]]/{id:[0-9]+}/destroy", [[ .freska_resource ]]actions.HandleDestroy)
+router.Get("/[[ .freska_resources ]]/{id:[0-9]+}", [[ .freska_resource ]]actions.HandleShow)

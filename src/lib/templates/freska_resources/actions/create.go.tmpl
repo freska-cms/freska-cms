@@ -1,0 +1,73 @@
+package [[ .freska_resource ]]actions
+
+import (
+	"net/http"
+
+	"github.com/freska-cms/auth/can"
+	"github.com/freska-cms/mux"
+	"github.com/freska-cms/server"
+	"github.com/freska-cms/view"
+
+	"github.com/freska-cms/freska-cms/src/lib/session"
+	"github.com/freska-cms/freska-cms/src/[[ .freska_resources ]]"
+)
+
+// HandleCreateShow serves the create form via GET for [[ .freska_resources ]].
+func HandleCreateShow(w http.ResponseWriter, r *http.Request) error {
+
+	[[ .freska_resource ]] := [[ .freska_resources ]].New()
+
+	// Authorise
+	user := session.CurrentUser(w, r)
+	err := can.Create([[ .freska_resource ]], user)
+	if err != nil {
+		return server.NotAuthorizedError(err)
+	}
+
+	// Render the template
+	view := view.NewRenderer(w, r)
+	view.AddKey("currentUser", user)
+	view.AddKey("[[ .freska_resource ]]", [[ .freska_resource ]])
+	return view.Render()
+}
+
+// HandleCreate handles the POST of the create form for [[ .freska_resources ]]
+func HandleCreate(w http.ResponseWriter, r *http.Request) error {
+
+	[[ .freska_resource ]] := [[ .freska_resources ]].New()
+
+	// Check the authenticity token
+	err := session.CheckAuthenticity(w, r)
+	if err != nil {
+		return err
+	}
+
+	// Authorise
+	user := session.CurrentUser(w, r)
+	err = can.Create([[ .freska_resource ]], user)
+	if err != nil {
+		return server.NotAuthorizedError(err)
+	}
+
+	// Setup context
+	params, err := mux.Params(r)
+	if err != nil {
+		return server.InternalError(err)
+	}
+
+	// Validate the params, removing any we don't accept
+	[[ .freska_resource ]]Params := [[ .freska_resource ]].ValidateParams(params.Map(), [[ .freska_resources ]].AllowedParams())
+
+	id, err := [[ .freska_resource ]].Create([[ .freska_resource ]]Params)
+	if err != nil {
+		return server.InternalError(err)
+	}
+
+	// Redirect to the new [[ .freska_resource ]]
+	[[ .freska_resource ]], err = [[ .freska_resources ]].Find(id)
+	if err != nil {
+		return server.InternalError(err)
+	}
+
+	return server.Redirect(w, r, [[ .freska_resource ]].IndexURL())
+}

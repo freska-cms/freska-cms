@@ -4,8 +4,8 @@ package users
 import (
 	"time"
 
-	"github.com/fragmenta/fragmenta-cms/src/lib/resource"
-	"github.com/fragmenta/fragmenta-cms/src/lib/status"
+	"github.com/freska-cms/freska-cms/src/lib/resource"
+	"github.com/freska-cms/freska-cms/src/lib/status"
 )
 
 // User handles saving and retreiving users from the database

@@ -4,7 +4,7 @@ package users
 import (
 	"testing"
 
-	"github.com/fragmenta/fragmenta-cms/src/lib/resource"
+	"github.com/freska-cms/freska-cms/src/lib/resource"
 )
 
 var testUserName = "'fué ';'\""

@@ -3,12 +3,12 @@ package imageactions
 import (
 	"net/http"
 
-	"github.com/fragmenta/auth/can"
-	"github.com/fragmenta/mux"
-	"github.com/fragmenta/server"
+	"github.com/freska-cms/auth/can"
+	"github.com/freska-cms/mux"
+	"github.com/freska-cms/server"
 
-	"github.com/fragmenta/fragmenta-cms/src/images"
-	"github.com/fragmenta/fragmenta-cms/src/lib/session"
+	"github.com/freska-cms/freska-cms/src/images"
+	"github.com/freska-cms/freska-cms/src/lib/session"
 )
 
 // HandleDestroy responds to /images/n/destroy by deleting the image.

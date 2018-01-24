@@ -3,14 +3,13 @@ package pageactions
 import (
 	"net/http"
 
-	"github.com/fragmenta/server"
-	"github.com/fragmenta/server/config"
-	"github.com/fragmenta/server/log"
-	"github.com/fragmenta/view"
+	"github.com/freska-cms/server"
+	"github.com/freska-cms/server/log"
+	"github.com/freska-cms/view"
 
-	"github.com/fragmenta/fragmenta-cms/src/lib/session"
-	"github.com/fragmenta/fragmenta-cms/src/pages"
-	"github.com/fragmenta/fragmenta-cms/src/users"
+	"github.com/freska-cms/freska-cms/src/lib/session"
+	"github.com/freska-cms/freska-cms/src/pages"
+	"github.com/freska-cms/freska-cms/src/users"
 )
 
 // HandleShowHome serves our home page with a simple template.
@@ -21,7 +20,7 @@ func HandleShowHome(w http.ResponseWriter, r *http.Request) error {
 
 	// If we have no users (first run), redirect to setup
 	if users.Count() == 0 {
-		return server.Redirect(w, r, "/fragmenta/setup")
+		return server.Redirect(w, r, "/freska/setup")
 	}
 
 	// Home fetches the first page with the url '/' and uses it for the home page of the site
@@ -33,12 +32,9 @@ func HandleShowHome(w http.ResponseWriter, r *http.Request) error {
 	currentUser := session.CurrentUser(w, r)
 
 	view := view.NewWithPath(r.URL.Path, w)
-	view.AddKey("title", "Fragmenta app")
+	view.AddKey("title", "Freska CMS app")
 	view.AddKey("page", page)
 	view.AddKey("currentUser", currentUser)
-	view.AddKey("meta_title", config.Get("meta_title"))
-	view.AddKey("meta_desc", config.Get("meta_desc"))
-	view.AddKey("meta_keywords", config.Get("meta_keywords"))
 	view.Template("pages/views/templates/default.html.got")
 	return view.Render()
 }

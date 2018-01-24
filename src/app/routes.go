@@ -1,17 +1,16 @@
 package app
 
 import (
-	"github.com/fragmenta/mux"
-	"github.com/fragmenta/server/log"
+	"github.com/freska-cms/mux"
+	"github.com/freska-cms/server/log"
 
 	// Resource Actions
-	"github.com/fragmenta/fragmenta-cms/src/images/actions"
-	"github.com/fragmenta/fragmenta-cms/src/lib/session"
-	"github.com/fragmenta/fragmenta-cms/src/pages/actions"
-	"github.com/fragmenta/fragmenta-cms/src/posts/actions"
-	"github.com/fragmenta/fragmenta-cms/src/redirects/actions"
-	"github.com/fragmenta/fragmenta-cms/src/tags/actions"
-	"github.com/fragmenta/fragmenta-cms/src/users/actions"
+	"github.com/freska-cms/freska-cms/src/images/actions"
+	"github.com/freska-cms/freska-cms/src/lib/session"
+	"github.com/freska-cms/freska-cms/src/pages/actions"
+	"github.com/freska-cms/freska-cms/src/posts/actions"
+	"github.com/freska-cms/freska-cms/src/tags/actions"
+	"github.com/freska-cms/freska-cms/src/users/actions"
 )
 
 // SetupRoutes creates a new router and adds the routes for this app to it.
@@ -38,14 +37,6 @@ func SetupRoutes() *mux.Mux {
 
 	// Resource Routes
 
-	router.Get("/redirects", redirectactions.HandleIndex)
-	router.Get("/redirects/create", redirectactions.HandleCreateShow)
-	router.Post("/redirects/create", redirectactions.HandleCreate)
-	router.Get("/redirects/{id:[0-9]+}/update", redirectactions.HandleUpdateShow)
-	router.Post("/redirects/{id:[0-9]+}/update", redirectactions.HandleUpdate)
-	router.Post("/redirects/{id:[0-9]+}/destroy", redirectactions.HandleDestroy)
-	router.Get("/redirects/{id:[0-9]+}", redirectactions.HandleShow)
-
 	router.Get("/pages", pageactions.HandleIndex)
 	router.Get("/pages/create", pageactions.HandleCreateShow)
 	router.Post("/pages/create", pageactions.HandleCreate)
@@ -53,8 +44,8 @@ func SetupRoutes() *mux.Mux {
 	router.Post("/pages/{id:[0-9]+}/update", pageactions.HandleUpdate)
 	router.Post("/pages/{id:[0-9]+}/destroy", pageactions.HandleDestroy)
 	router.Get("/pages/{id:[0-9]+}", pageactions.HandleShow)
-	router.Get("/fragmenta/setup", pageactions.HandleSetupShow)
-	router.Post("/fragmenta/setup", pageactions.HandleSetup)
+	router.Get("/freska/setup", pageactions.HandleSetupShow)
+	router.Post("/freska/setup", pageactions.HandleSetup)
 
 	router.Get("/images", imageactions.HandleIndex)
 	router.Get("/images/create", imageactions.HandleCreateShow)

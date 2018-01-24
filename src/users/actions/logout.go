@@ -3,10 +3,10 @@ package useractions
 import (
 	"net/http"
 
-	"github.com/fragmenta/auth"
-	"github.com/fragmenta/server"
+	"github.com/freska-cms/auth"
+	"github.com/freska-cms/server"
 
-	"github.com/fragmenta/fragmenta-cms/src/lib/session"
+	"github.com/freska-cms/freska-cms/src/lib/session"
 )
 
 // HandleLogout clears the current user's session /users/logout

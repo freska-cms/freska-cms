@@ -1,0 +1,15 @@
+{{ if not .[[ .freska_resource ]].ID }}
+    <tr class="data-table-head">
+        <td>Id</td>
+        <td>Status</td>
+        <td>Updated</td>
+        <td>Actions</td>
+    </tr>
+{{ else }}
+    <tr {{ if odd .i }}class="odd"{{end}}>
+        <td>{{ .[[ .freska_resource ]].ID }}</td>
+        <td>{{ .[[ .freska_resource ]].StatusDisplay }}</td>
+        <td>{{ time .[[ .freska_resource ]].UpdatedAt }}</td>
+        <td><a href="{{ .[[ .freska_resource ]].UpdateURL }}">Edit</a></td>
+    </tr>
+{{ end }}

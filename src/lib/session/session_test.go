@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/fragmenta/auth"
+	"github.com/freska-cms/auth"
 )
 
 var (

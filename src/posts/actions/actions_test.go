@@ -8,11 +8,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/fragmenta/mux"
-	"github.com/fragmenta/query"
+	"github.com/freska-cms/mux"
+	"github.com/freska-cms/query"
 
-	"github.com/fragmenta/fragmenta-cms/src/lib/resource"
-	"github.com/fragmenta/fragmenta-cms/src/posts"
+	"github.com/freska-cms/freska-cms/src/lib/resource"
+	"github.com/freska-cms/freska-cms/src/posts"
 )
 
 // names is used to test setting and getting the first string field of the post.

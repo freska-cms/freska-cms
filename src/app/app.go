@@ -1,19 +1,19 @@
 package app
 
 import (
+	"fmt"
 	"os"
-	"path/filepath"
 	"strings"
 	"time"
 
-	"github.com/fragmenta/assets"
-	"github.com/fragmenta/query"
-	"github.com/fragmenta/server/config"
-	"github.com/fragmenta/server/log"
-	"github.com/fragmenta/view"
+	"github.com/freska-cms/assets"
+	"github.com/freska-cms/query"
+	"github.com/freska-cms/server/config"
+	"github.com/freska-cms/server/log"
+	"github.com/freska-cms/view"
 
-	"github.com/fragmenta/fragmenta-cms/src/lib/mail"
-	"github.com/fragmenta/fragmenta-cms/src/lib/mail/adapters/sendgrid"
+	"github.com/freska-cms/freska-cms/src/lib/mail"
+	"github.com/freska-cms/freska-cms/src/lib/mail/adapters/sendgrid"
 )
 
 // appAssets is a pkg global used in our default handlers to serve asset files.
@@ -141,15 +141,6 @@ func SetupAssets() {
 			log.Fatal(log.V{"a": "unable to compile assets", "error": err})
 			os.Exit(1)
 		}
-		// If we have a theme, load assets from the them as well
-		if themePath() != "" {
-			err = appAssets.Compile(themePath(), "public")
-			if err != nil {
-				log.Fatal(log.V{"a": "unable to compile assets", "error": err})
-				os.Exit(1)
-			}
-		}
-
 	}
 
 }
@@ -164,9 +155,11 @@ func SetupView() {
 	paths := []string{"src"}
 
 	// Add a theme path if we have one
-	if themePath() != "" {
-		log.Log(log.V{"msg": "loading templates for theme", "theme": config.Get("theme")})
-		paths = append(paths, themePath())
+	theme := config.Get("theme")
+	if theme != "" {
+		log.Log(log.V{"msg": "loading templates for theme", "theme": theme})
+		themePath := fmt.Sprintf("themes/%s/src", theme)
+		paths = append(paths, themePath)
 	}
 
 	err := view.LoadTemplatesAtPaths(paths, helperFuncs())
@@ -203,12 +196,4 @@ func helperFuncs() map[string]interface{} {
 	}
 
 	return helpers
-}
-
-// themePath returns the path to the theme src dir (if a theme is chosen)
-func themePath() string {
-	if config.Get("theme") == "" {
-		return ""
-	}
-	return filepath.Join("themes", config.Get("theme"), "src")
 }

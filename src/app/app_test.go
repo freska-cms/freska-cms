@@ -6,10 +6,10 @@ import (
 	"os"
 	"testing"
 
-	"github.com/fragmenta/auth/can"
-	"github.com/fragmenta/server/config"
+	"github.com/freska-cms/auth/can"
+	"github.com/freska-cms/server/config"
 
-	"github.com/fragmenta/fragmenta-cms/src/users"
+	"github.com/freska-cms/freska-cms/src/users"
 )
 
 // TestRouter tests our routes are functioning correctly.
@@ -22,7 +22,7 @@ func TestRouter(t *testing.T) {
 	}
 
 	c := config.New()
-	c.Load("secrets/fragmenta.json")
+	c.Load("secrets/freska.json")
 	c.Mode = config.ModeTest
 	config.Current = c
 

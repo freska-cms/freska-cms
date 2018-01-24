@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/fragmenta/server"
-	"github.com/fragmenta/server/config"
+	"github.com/freska-cms/server"
+	"github.com/freska-cms/server/config"
 
-	"github.com/fragmenta/fragmenta-cms/src/app"
+	"github.com/freska-cms/freska-cms/src/app"
 )
 
 // Main entrypoint for the server which performs bootstrap, setup
@@ -63,14 +63,14 @@ func SetupServer() (*server.Server, error) {
 
 	// Load the appropriate config
 	c := config.New()
-	err = c.Load("secrets/fragmenta.json")
+	err = c.Load("secrets/freska.json")
 	if err != nil {
 		return nil, err
 	}
 	config.Current = c
 
 	// Check environment variable to see if we are in production mode
-	if os.Getenv("FRAG_ENV") == "production" {
+	if os.Getenv("FRESKA_ENV") == "production" {
 		config.Current.Mode = config.ModeProduction
 	}
 

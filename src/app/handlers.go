@@ -6,10 +6,10 @@ import (
 	"path"
 	"strings"
 
-	"github.com/fragmenta/server"
-	"github.com/fragmenta/server/config"
-	"github.com/fragmenta/server/log"
-	"github.com/fragmenta/view"
+	"github.com/freska-cms/server"
+	"github.com/freska-cms/server/config"
+	"github.com/freska-cms/server/log"
+	"github.com/freska-cms/view"
 )
 
 // Serve static files (assets, images etc)
